@@ -1,0 +1,15 @@
+{
+  "button": [{
+      "type": "click", 
+      "name": "button1", 
+      "key": "button1"
+    }, {
+      "type": "click", 
+      "name": "button2", 
+      "key": "button2"
+    }, {
+      "type": "view", 
+      "name": "JS SDK", 
+      "url": "http://letorn.aliapp.com/jobfair/jssdk.jsp"
+  }]
+}

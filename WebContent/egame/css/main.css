@@ -1,0 +1,322 @@
+@-webkit-keyframes showPage{
+	from{-webkit-transform: scale(0);}
+	to{-webkit-transform: scale(1);}
+}
+body{
+	margin: 0;
+	background: #E3C9B3;
+	text-align: center;
+	font-family: "微软雅黑";
+}
+#manuPage{
+	height:100%;
+	width:100%;
+}
+.manuBack{
+	width: 100%;
+  	height: 300px;
+ 	position: absolute;
+  	top: 10%;
+  	background:url(../gif/home.gif) center no-repeat;
+  	background-size:contain;
+}
+a{
+	text-decoration: none;
+}
+a:link{color: white;}
+a:visited{color: white;}
+a:hover{color: white;}
+a:active{color: white;}
+.BTN{
+	display: inline-block;
+	height: 2em;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	border-radius: 5px;
+	margin-bottom: 0.5em;
+	cursor: pointer;
+	padding-top: 0.5em;
+}
+.btnContainer{
+	position: absolute;
+  	bottom: 10%;
+  	width: inherit;
+}
+#enter{
+	background: #98D644;
+	border: solid 1px #009144;
+	width: 80%;
+}
+#about{
+	background: #29ABE2;
+	border: solid 1px #0071BC;
+	width: 80%;
+}
+#ranking{
+	background: #F15A24;
+	border: solid 1px #C1272D;
+	width: 80%;
+}
+#aboutReturn{
+	background: #98D644;
+	border: solid 1px #009144;
+	position: absolute;
+	bottom: 1em;
+	width: 80%;
+	left: 10%;
+}
+#chapterStart{
+	background: lightgray;
+	border: solid 1px darkgrey;
+	position: absolute;
+	bottom: 4em;
+	width: 80%;
+	left: 10%;
+}
+#chapterReturn{
+	background: #F15A24;
+	border: solid 1px #C1272D;
+	position: absolute;
+	bottom: 1em;
+	width: 80%;
+	left: 10%;
+}
+#aboutPage,#chapterPage{
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 100%;
+}
+.aboutPageBack{
+	display: inline-block;
+	height: 75%;
+	width: 80%;
+	background: #CCF0ED;
+	border-radius: 25px;
+	border: solid 2px #95B091;
+	margin-top: 15%;
+}
+.chapterPageBack{
+	display: inline-block;
+	height: 70%;
+	width: 80%;
+	background: #CCF0ED;
+	border-radius: 25px;
+	border: solid 2px #95B091;
+	margin-top: 15%;
+}
+.aboutBack,.chapterBack{
+	height: 100px;
+	width: 100%;
+	position: absolute;
+	margin-top: 8%;
+}
+.aboutText{
+	display: inline-block;
+	width: 80%;
+	height: 70%;
+	position: absolute;
+	text-align: start;
+	margin-top: 22%;
+	overflow:scroll;
+}
+.chapterThumb{
+	display: inline-block;
+	width: 80%;
+	height: 50%;
+	position: absolute;
+	margin-top: 22%;
+	text-align: center;
+}
+.thumbs{
+	height: 100px;
+	width: 100px;
+	background-color: #FFFFFF;
+	background-image: url(../img/lock.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	border-radius: 10px;
+	border: solid 4px white;
+	display: inline-block;
+	margin: 8px;
+	margin-bottom: 3em;
+	position: relative;	
+}
+.thumbsClick{
+	height: 100px;
+	width: 100px;
+	background-color: #FFFFFF;
+	background-image: url(../img/lock.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	border-radius: 10px;
+	border: solid 4px #98D644;
+	display: inline-block;
+	margin: 8px;
+	margin-bottom: 3em;
+	position: relative;	
+}
+.aboutText h2{
+	color: #E08869;
+	font-size: 100%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+.aboutText p{
+	color: #666666;
+	font-size: 70%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+#aboutPage{
+	display: none;
+	-webkit-animation: showPage 500ms ease-in-out;
+}
+#chapterPage{
+	display: block;
+	-webkit-animation: showPage 500ms ease-in-out;
+}
+b{
+	position: relative;
+	top: 105px;
+	font-size: 12px;
+	width: 100px;
+}
+b.qidai{
+	color: gray;
+}
+.star{
+	height: 20px;
+	width: 120px;
+	position: relative;
+	top: 110px;
+	left: -10px;
+	-webkit-transform: scale(0.8);
+}
+.starFull{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	top: 140px;
+	background: url(../img/star.png) 0px 0px;
+}
+.starEmpty{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	top: 140px;
+	background: url(../img/star.png) 0px 40px;
+}
+.heartFull {
+	height: 20px;
+	width: 20px;
+	background: url(../img/heart.png) no-repeat;
+	display: inline-block;
+}
+.heartEmpty {
+	height: 20px;
+	width: 20px;
+	background: url(../img/heart.png) no-repeat;
+	background-position: 0px -40px;
+	display: inline-block;
+}
+.starGray{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	top: 140px;
+	background: url(../img/star.png) 0px 20px;
+}
+#finger{
+	height: 36px;
+	width: 36px;
+	background: url(../img/finger.png) 0px 36px;
+	display: block;
+	position: relative;
+}
+@media screen and (max-height: 480px){
+	.manuBack {
+	  width: 100%;
+	  height: 300px;
+	  position: absolute;
+	  top: 0;
+	  background: url(../gif/home.gif) center no-repeat;
+	  background-size: contain;
+	}
+	.aboutBack, .chapterBack {
+	  height: 100px;
+	  width: 100%;
+	  position: absolute;
+	  top:0;
+	  margin-top:0;
+	  z-index:5;
+	}
+	.chapterPageBack {
+	  display: inline-block;
+	  height: 70%;
+	  width: 80%;
+	  background: #CCF0ED;
+	  border-radius: 25px;
+	  border: solid 2px #95B091;
+	  margin-top: 10%;
+	}
+	.chapterThumb {
+	  display: inline-block;
+	  width: 80%;
+	  height: 50%;
+	  position: absolute;
+	  margin-top: 13%;
+	  text-align: center;
+	}
+}
+@media screen and (min-height: 700px){
+	.BTN {
+	  display: inline-block;
+	  height: 3em;
+	  color: white;
+	  font-size: 14px;
+	  font-weight: bold;
+	  border-radius: 5px;
+	  margin-bottom: 0.5em;
+	  cursor: pointer;
+	  padding-top: 1em;
+	}
+	.chapterThumb {
+	  display: inline-block;
+	  width: 80%;
+	  height: 50%;
+	  position: absolute;
+	  margin-top: 35%;
+	  text-align: center;
+	}
+	.chapterPageBack {
+	  display: inline-block;
+	  height: 64%;
+	  width: 80%;
+	  background: #CCF0ED;
+	  border-radius: 25px;
+	  border: solid 2px #95B091;
+	  margin-top: 15%;
+	}
+	#chapterStart {
+	  background: lightgray;
+	  border: solid 1px darkgrey;
+	  position: absolute;
+	  bottom: 6em;
+	  width: 80%;
+	  left: 10%;
+	}
+	#aboutReturn {
+	  background: #98D644;
+	  border: solid 1px #009144;
+	  position: absolute;
+	  bottom: 2em;
+	  width: 80%;
+	  left: 10%;
+	}
+}

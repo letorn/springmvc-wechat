@@ -1,0 +1,112 @@
+body{
+	margin: 0;
+	background: #E3C9B3;
+	text-align: center;
+	font-family: "微软雅黑";
+	font-size: 12px;
+}
+a{
+	text-decoration: none;
+}
+a:link{color: white;}
+a:visited{color: white;}
+a:hover{color: white;}
+a:active{color: white;}
+.BTN{
+	display: inline-block;
+	height: 2em;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	border-radius: 5px;
+	margin-bottom: 0.5em;
+	cursor: pointer;
+	padding-top: 0.5em;
+	width: 80%;
+}
+#scoreBoardPage{
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 100%;
+}
+.memberHolder{
+	display: inline-block;
+	width: 80%;
+	height: 50%;
+	position: absolute;
+	text-align: start;
+	margin-top: 25%;
+	text-align: center;
+	overflow: scroll;
+}
+.member{
+	display: inline-block;
+	margin-bottom: 1em;
+}
+.scoreBoardPageBack{
+	display: inline-block;
+	width: 80%;
+	height: 65%;
+	background: #CCF0ED;
+	border-radius: 25px;
+	border: solid 2px #95B091;
+	margin-top: 15%;
+}
+.ranking{
+	font-size: 14px;
+	font-weight: bold;
+}
+.portrait{
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+	background: url(../img/head.png) no-repeat red;
+	background-size: contain;
+	background-position: center;
+	vertical-align: middle;
+}
+.honor{
+	color: #F43C11;
+	font-weight: bold;
+	opacity: 0.6;
+	font-size: 14px;
+}
+.score{
+	color: #16B9F2;
+	font-weight: bold;
+	opacity: 0.6;
+	font-size: 14px;
+}
+#ShareScore{
+	background: #98D644;
+	border: solid 1px #009144;
+	position: absolute;
+	bottom: 4em;
+}
+.textTips{
+	position: relative;
+	top: 90%;
+	opacity: 0.6;
+	font-size: 14px;
+	font-weight: bold;
+}
+#rankingNum{
+	font-size: 16px;
+	color: #F43C11;
+}
+#ReturnHome{
+	background: #F15A24;
+	border: solid 1px #C1272D;
+	position: absolute;
+	bottom: 1em;
+}
+
+.scoreBoardTitle{
+	height: 100px;
+	width: 100%;
+	position: absolute;
+	margin-top: 8%;
+}
+

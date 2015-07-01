@@ -1,0 +1,112 @@
+Ext.define('Platform.analysis.VisitLogPanel', {
+  extend: 'Ext.panel.Panel',
+  xtype: 'platform-analysis-visitlogpanel',
+  title: '访问数',
+  border: false,
+  layout: {
+    type: 'hbox',
+    align: 'stretch'
+  },
+  initComponent: function() {
+    var me = this;
+
+    if (me.subTitle) {
+      me.title = Ext.String.format('{0}({1})', me.title, me.subTitle);
+    }
+
+    me.store = Store.create({
+      fields: ['page', 'pageName', 'log']
+    });
+    me.subStore = Store.create({
+      fields: ['datetime', 'nickname']
+    }),
+
+    me.tbar = [{
+      text: '刷新',
+      iconCls: 'refresh',
+      handler: Ext.bind(me.onRefreshBtnClick, me)
+    }];
+    
+    me.items = [{
+      itemId: 'grid',
+      xtype: 'grid',
+      flex: 2,
+      border: false,
+      store: me.store,
+      columns: [{
+        text: '页面',
+        dataIndex: 'pageName',
+        width: 160
+      }, {
+        text: '访问数',
+        dataIndex: 'log'
+      }],
+      listeners: {
+        itemclick: Ext.bind(me.onGridItemClick, me)
+      }
+    }, {
+      itemId: 'subGrid',
+      xtype: 'grid',
+      flex: 5,
+      border: false,
+      style: 'border-left:1px solid #cecece;',
+      store: me.subStore,
+      columns: [{
+        text: '访问时间',
+        dataIndex: 'datetime',
+        width: 150
+      }, {
+        text: '用户名',
+        dataIndex: 'nickname',
+        width: 160
+      }]
+    }];
+
+    me.callParent();
+  },
+  loadData: function(startDate, endDate) {
+    var me = this, grid = me.down('#grid'), store = me.store, data = [];
+    me.startDate = startDate;
+    me.endDate = endDate;
+    grid.setLoading(true);
+    Ext.Ajax.request({
+      url: ctx + '/egame/platform/aggrVisitLogs.do',
+      params: {
+        startDate: startDate,
+        endDate: endDate
+      },
+      callback: function(options, success, response) {
+        if (response = decodeResponse(response)) {
+          data = response.data;
+        }
+        store.loadData(data);
+        grid.setLoading(false);
+      }
+    });
+  },
+  loadSubData: function(record) {
+    var me = this, subGrid = me.down('#subGrid'), subStore = me.subStore, startDate = me.startDate, endDate = me.endDate, subData = [];
+    subGrid.setLoading(true);
+    Ext.Ajax.request({
+      url: ctx + '/egame/platform/visitLogs.do',
+      params: {
+        page: record.get('page'),
+        startDate: startDate,
+        endDate: endDate
+      },
+      callback: function(options, success, response) {
+        if (response = decodeResponse(response)) {
+          subData = response.data;
+        }
+        subStore.loadData(subData);
+        subGrid.setLoading(false);
+      }
+    });
+  },
+  onRefreshBtnClick: function() {
+    this.loadData(this.startDate, this.endDate);
+  },
+  onGridItemClick: function(view, record) {
+    this.loadSubData(record);
+  }
+});

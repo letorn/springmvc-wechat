@@ -113,7 +113,7 @@
         var badges = ['badgeLose', 'badgeDogfall', 'badgeWin']
         for (var i = 0; i < players.length; i++) {
           var player = players[i]
-          addMember(player.nickname, player.honor, player.score, player.star, player.headImgUrl, badges[player.matched + 1])
+          addMember(player.nickname, player.honor, player.score, player.chapterKeys, player.headImgUrl, badges[player.matched + 1])
         }
         $setArena.click(function() {
           $guide.css("display", "block");
@@ -140,10 +140,14 @@
         for (; i < Star; i++) {
           starNum += '<li><span class="starFull"></span></li>'
         }
-        for (; i < 5; i++) {
+        for (; i < 4; i++) {
           starNum += '<li><span class="starEmpty"></span></li>'
         }
-        memberList.innerHTML += '<li class="member">' + '<span class="portraitHolder"><img class="portraitSmall" src="' + ImgUrl + '" /><span class="'+Badge+'"></span></span>' + '<span class="memberName">' + Name + '</span>' + '<span class="memberHonor">' + Honor + '</span>' + '<ul class="star">' + starNum + '</ul>' + '<span class="memberScore">' + Score + '分</span>' + '<div class="smallLine"></div>' + '</li>'
+        memberList.innerHTML += '<li class="member">' + 
+        '<span class="portraitHolder"><img class="portraitSmall" src="' + ImgUrl + '" /><span class="'+Badge+'"></span></span>' + 
+        '<span class="memberName">' + Name + '</span>' + '<span class="memberHonor">' + Honor + '</span>' + 
+        '<ul class="star">' + starNum + '</ul>' + '<span class="memberScore">' + 
+        Score + '分</span>' + '<div class="smallLine"></div>' + '</li>'
       }
     </script>
 </body>

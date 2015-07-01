@@ -137,16 +137,16 @@ tbody td span{
 	display: inline-block;
 }
 .starFull{
-	height: 10px;
-	width: 10px;
-	background: url(../img/starSmall.png) no-repeat;
+	height: 15px;
+	width: 15px;
+	background: url(../img/keySmall.png) no-repeat;
 	display: inline-block;
 }
 .starEmpty{
-	height: 10px;
-	width: 10px;
-	background: url(../img/starSmall.png) no-repeat;
-	background-position: 0px -20px;
+	height: 15px;
+	width: 15px;
+	background: url(../img/keySmall.png) no-repeat;
+	background-position: 0px -15px;
 	display: inline-block;
 }
 .badgeWin{
@@ -177,7 +177,7 @@ tbody td span{
 	right: 20px;
 }
 .portraitHolder{
-	margin: -30px;
+	margin: -10px;
 }
 .memberName{
 	display: inline-block;
@@ -186,6 +186,8 @@ tbody td span{
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    position: relative;
+    top: 3px;
 }
 #hostName{
 	display: inline-block;

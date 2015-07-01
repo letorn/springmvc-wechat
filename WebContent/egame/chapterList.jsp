@@ -67,29 +67,29 @@
       <div class="chapterBack">
         <img src="img/chapter.png" style="max-width: 60%;" />
       </div>
-      <div class="chapterThumb">
+      <div id="chapterList" class="chapterThumb">
         <div id="thumbs01" class="thumbs">
           <b>第1关 搭讪</b>
-          <div id="chapter01_star" class="star">
-            <i class="heartFull"></i> <i class="heartFull"></i> <i class="heartFull"></i> <i class="heartEmpty"></i> <i class="heartEmpty"></i>
+          <div id="chapter01_heart" class="star">
+            <i class="heartEmpty"></i> <i class="heartEmpty"></i> <i class="heartEmpty"></i> <i class="heartEmpty"></i> <i class="heartEmpty"></i>
           </div>
 
         </div>
         <div id="thumbs02" class="thumbs">
-          <b class="qidai">第2关 约吗</b>
-          <div class="star">
-            <i class="heartFull"></i> <i class="heartFull"></i> <i class="heartFull"></i> <i class="heartFull"></i> <i class="heartFull"></i>
+          <b>第2关 约吗</b>
+          <div id="chapter02_heart" class="star">
+            <i class="heartEmpty"></i> <i class="heartEmpty"></i> <i class="heartEmpty"></i> <i class="heartEmpty"></i> <i class="heartEmpty"></i>
           </div>
         </div>
         <div id="thumbs03" class="thumbs">
-          <b class="qidai">第3关 表白</b>
-          <div class="star">
-            <i class="heartFull"></i> <i class="heartFull"></i> <i class="heartFull"></i> <i class="heartFull"></i> <i class="heartFull"></i>
+          <b>第3关 表白</b>
+          <div id="chapter03_heart" class="star">
+            <i class="heartEmpty"></i> <i class="heartEmpty"></i> <i class="heartEmpty"></i> <i class="heartEmpty"></i> <i class="heartEmpty"></i>
           </div>
         </div>
         <div id="thumbs04" class="thumbs">
-          <b class="qidai">第4关 敬请期待</b>
-          <div class="star">
+          <b class='qidai'>第4关 敬请期待</b>
+          <div id="chapter04_heart" class="star">
             <i class="heartEmpty"></i> <i class="heartEmpty"></i> <i class="heartEmpty"></i> <i class="heartEmpty"></i> <i class="heartEmpty"></i>
           </div>
         </div>
@@ -99,12 +99,12 @@
     </div>
   </div>
   <script type="text/javascript">
-      var chapter1Star = '${chapter1Star}'
-      var chapter1Score = '${chapter1Score}', chapter1Heart = '${chapter1Heart}'
-      var chapter2Score = '${chapter2Score}', chapter2Heart = '${chapter2Heart}'
-      var chapter3Score = '${chapter3Score}', chapter3Heart = '${chapter3Heart}'
-      var chapter4Score = '${chapter4Score}', chapter4Heart = '${chapter4Heart}'
-      var chapterkeys = '${chapterkeys}'
+      var chapter1Score = '${chapter1Score}', chapter1Heart = '${chapter1Heart}' || 0
+      var chapter2Score = '${chapter2Score}', chapter2Heart = '${chapter2Heart}' || 0
+      var chapter3Score = '${chapter3Score}', chapter3Heart = '${chapter3Heart}' || 0
+      var chapter4Score = '${chapter4Score}', chapter4Heart = '${chapter4Heart}' || 0
+
+      var chapterkeys = ${chapterKeys}
 
       var $manuPage = $('#manuPage'), $enter = $('#enter'), $chapterPage = $('#chapterPage'), $start = $('#Start'), $thumbs = $('.thumbs'), $goBtn = $('#chapterStart')
       window.onload = function() {
@@ -113,6 +113,8 @@
         container.style.width = window.innerWidth + 'px'
         var gameStart = new Home();
         gameStart.init()
+        
+
 
         $enter.click(function() {
           $chapterPage.show();
@@ -121,7 +123,10 @@
         $thumbs.on('click', function(ev) {
           gameStart.selectChapter(ev)
         })
+        
+        
       }
+      
     </script>
 </body>
 </html>

@@ -267,8 +267,8 @@ public class EGameService {
 		return false;
 	}
 
-	public PlayerScore getPlayerScore(Long playerId, Integer chapterNum) {
-		return playerScoreDao.get(playerId, playerId, topic.getId(), topic.getChapters().get(chapterNum - 1).getId());
+	public PlayerScore getPlayerScore(Long ownerId, Long playerId, Integer chapterNum) {
+		return playerScoreDao.get(ownerId, playerId, topic.getId(), topic.getChapters().get(chapterNum - 1).getId());
 	}
 
 	public Integer getPlayerScoreCount() {

@@ -101,7 +101,7 @@
     <div id="PS" class="PS"></div>
     <div id="partButton">
       <div class="partBtnHolder">
-        <a href="${ctx}/egame/chapterList.do?ownerId=${ownerId}&playerId=${playerId}"><div id="next" class="next">闯下一关</div></a>
+        <a href="${ctx}/egame/chapterList.do?ownerId=${ownerId}&playerId=${playerId}"><div id="next" class="next">返回</div></a>
       </div>
     </div>
   </div>

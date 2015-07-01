@@ -60,7 +60,7 @@ public class EGameController {
 		if (owner != null && player != null) {
 			Integer chapterKeys = 0;
 			for (int i = 0; i < egameService.getChapterCount(); i++) {
-				PlayerScore playerScore = egameService.getPlayerScore(player.getId(), i + 1);
+				PlayerScore playerScore = egameService.getPlayerScore(owner.getId(), player.getId(), i + 1);
 				Integer score = playerScore != null && playerScore.getScore() != null ? playerScore.getScore() : 0;
 				Integer heart = 0;
 				if (score > 0 && score <= 20)

@@ -53,6 +53,8 @@ p {
 	margin-left: 20px;
 	margin-right: 1em;
 	font-size: 12px;
+	position: relative;
+    top: 7%;
 }
 /*#gifHolder{
 	width: 100%;

@@ -140,7 +140,7 @@
         for (; i < Star; i++) {
           starNum += '<li><span class="starFull"></span></li>'
         }
-        for (; i < 4; i++) {
+        for (; i < 3; i++) {
           starNum += '<li><span class="starEmpty"></span></li>'
         }
         memberList.innerHTML += '<li class="member">' + 

@@ -30,10 +30,10 @@ Chapter.prototype.delayTime = function(){
 	var _this = this	
 	this.fadeTime = window.setTimeout(function(){
 		_this.showDescription()
-	},500)
+	},3000)
 	this.showTime = window.setTimeout(function(){
 		_this.showOption()
-	},500)
+	},6000)
 }
 Chapter.prototype.showDescription = function(){
 	$descriptionHolder.css('display','block')

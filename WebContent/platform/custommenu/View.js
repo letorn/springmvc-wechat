@@ -110,9 +110,9 @@ Ext.define('Platform.custommenu.View', {
     me.setLoading(true);
     Ext.Ajax.request({
       url: ctx + '/platform/custommenu/data.do',
+      timeout: 3000,
       callback: function(options, success, response) {
-        var response = Ext.decode(response.responseText);
-        if (response.success) {
+        if (response = decodeResponse(response)) {
           me.store.setRoot({
             id: '-1',
             name: '根',
@@ -190,9 +190,9 @@ Ext.define('Platform.custommenu.View', {
     me.setLoading(true);
     Ext.Ajax.request({
       url: ctx + '/platform/custommenu/sync.do',
+      timeout: 3000,
       callback: function(options, success, response) {
-        var response = Ext.decode(response.responseText);
-        if (response.success) {
+        if (response = decodeResponse(response)) {
           Ext.toast('更新成功', '提示', 't');
         } else {
           Ext.toast('更新失败', '提示', 't');
@@ -206,12 +206,12 @@ Ext.define('Platform.custommenu.View', {
     me.setLoading(true);
     Ext.Ajax.request({
       url: ctx + '/platform/custommenu/delete.do',
+      timeout: 3000,
       params: {
         id: record.get('id')
       },
       callback: function(options, success, response) {
-        var response = Ext.decode(response.responseText);
-        if (response.success) {
+        if (response = decodeResponse(response)) {
           me.loadData();
         }
         me.setLoading(false);

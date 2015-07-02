@@ -71,6 +71,7 @@ Ext.define('Platform.analysis.VisitLogPanel', {
     grid.setLoading(true);
     Ext.Ajax.request({
       url: ctx + '/egame/platform/aggrVisitLogs.do',
+      timeout: 3000,
       params: {
         startDate: startDate,
         endDate: endDate
@@ -89,6 +90,7 @@ Ext.define('Platform.analysis.VisitLogPanel', {
     subGrid.setLoading(true);
     Ext.Ajax.request({
       url: ctx + '/egame/platform/visitLogs.do',
+      timeout: 3000,
       params: {
         page: record.get('page'),
         startDate: startDate,

@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Index</title>
+<title>登录</title>
 <script type="text/javascript" src="${ctx}/public/ext/bootstrap.js"></script>
 <script type="text/javascript">
   Ext.onReady(function() {
@@ -30,6 +30,8 @@
     });
     Ext.create('Ext.window.Window', {
       title: '登录',
+      closable: false,
+      modal: true,
       items: [formpanel],
       buttons: [{
         text: '确定',

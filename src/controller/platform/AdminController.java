@@ -39,4 +39,11 @@ public class AdminController {
 		return resultMap;
 	}
 
+	@RequestMapping("initStack.do")
+	@ResponseBody
+	public Map<String, Object> initStack() {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("success", adminService.initStack());
+		return resultMap;
+	}
 }

@@ -5,6 +5,7 @@ Ext.define('Platform.viewport.Dashboard', {
   width: 180,
   title: '菜单',
   collapsible: true,
+  collapseFirst: false,
   rootVisible: false,
   initComponent: function() {
     var me = this;
@@ -21,7 +22,7 @@ Ext.define('Platform.viewport.Dashboard', {
       }.call()
     });
 
-    var view = Ext.widget('dataview', {
+    me.view = Ext.widget('dataview', {
       store: me.store,
       itemSelector: 'div.dashboard-item',
       selectedItemCls: 'dashboard-item-selected',
@@ -32,7 +33,7 @@ Ext.define('Platform.viewport.Dashboard', {
       }
     });
 
-    me.items = me.view = view;
+    me.items = me.view;
 
     me.callParent();
   },

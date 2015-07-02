@@ -73,6 +73,7 @@ Ext.define('Platform.analysis.ShareLogPanel', {
     grid.setLoading(true);
     Ext.Ajax.request({
       url: ctx + '/egame/platform/aggrShareLogs.do',
+      timeout: 3000,
       params: {
         startDate: startDate,
         endDate: endDate
@@ -91,6 +92,7 @@ Ext.define('Platform.analysis.ShareLogPanel', {
     subGrid.setLoading(true);
     Ext.Ajax.request({
       url: ctx + '/egame/platform/shareLogs.do',
+      timeout: 3000,
       params: {
         playerId: record.get('playerId'),
         startDate: startDate,

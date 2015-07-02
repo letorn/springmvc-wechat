@@ -362,6 +362,7 @@ Ext.define('Platform.analysis.HomePanel', {
         var data = [], sumData = [];
         Ext.Ajax.request({
           url: ctx + '/egame/platform/aggrData.do',
+          timeout: 3000,
           params: {
             startDate: startDate,
             endDate: endDate

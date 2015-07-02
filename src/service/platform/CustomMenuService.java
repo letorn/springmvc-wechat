@@ -12,6 +12,7 @@ import model.Menu;
 import org.springframework.stereotype.Service;
 
 import util.WeChatClient;
+import util.WebContext;
 import dao.MenuDao;
 
 @Service("customMenuService")
@@ -84,21 +85,22 @@ public class CustomMenuService {
 				map.put("type", "view");
 				if (menu.getValue().contains(",")) {
 					String[] arr = menu.getValue().split(",", 2);
-					map.put("url", WeChatClient.getOAuthUrl(arr[0], false, arr[1]));
+					map.put("url", WeChatClient.getOAuthUrl(arr[0].replaceFirst("^server:", WebContext.getServerLink()), false, arr[1]));
 				} else {
-					map.put("url", WeChatClient.getOAuthUrl(menu.getValue(), false, null));
+					map.put("url", WeChatClient.getOAuthUrl(menu.getValue().replaceFirst("^server:", WebContext.getServerLink()), false, null));
 				}
 			} else if ("oauth_info".equals(menu.getType())) {
 				map.put("type", "view");
 				if (menu.getValue().contains(",")) {
 					String[] arr = menu.getValue().split(",", 2);
-					map.put("url", WeChatClient.getOAuthUrl(arr[0], true, arr[1]));
+					map.put("url", WeChatClient.getOAuthUrl(arr[0].replaceFirst("^server:", WebContext.getServerLink()), true, arr[1]));
 				} else {
-					map.put("url", WeChatClient.getOAuthUrl(menu.getValue(), true, null));
+					map.put("url", WeChatClient.getOAuthUrl(menu.getValue().replaceFirst("^server:", WebContext.getServerLink()), true, null));
 				}
 			}
 			list.add(map);
 		}
 		return list;
 	}
+
 }

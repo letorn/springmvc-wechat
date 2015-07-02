@@ -50,9 +50,9 @@ Ext.define('Platform.baseinfo.View', {
     me.setLoading(true);
     Ext.Ajax.request({
       url: ctx + '/platform/baseinfo/data.do',
+      timeout: 3000,
       callback: function(options, success, response) {
-        var response = Ext.decode(response.responseText);
-        if (response.success) {
+        if (response = decodeResponse(response)) {
           me.getForm().setValues(response.data);
         }
         me.setLoading(false);

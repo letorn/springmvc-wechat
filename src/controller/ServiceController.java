@@ -225,10 +225,10 @@ public class ServiceController {
 						String scanResult = scanCodeInfoElement.elementTextTrim("ScanResult");
 						Method method = ReflectionUtils.findMethod(clazz, eventKey, String.class, String.class, Long.class, String.class, String.class, String.class, String.class, String.class);
 						if (method != null) {
-							msg = (Msg) ReflectionUtils.invokeMethod(method, viewEventHandler, toUserName, fromUserName, createTime, msgType, event, eventKey, scanType, scanResult);
+							msg = (Msg) ReflectionUtils.invokeMethod(method, scanCodePushEventHandler, toUserName, fromUserName, createTime, msgType, event, eventKey, scanType, scanResult);
 						} else {
 							method = ReflectionUtils.findMethod(clazz, "service", String.class, String.class, Long.class, String.class, String.class, String.class, String.class, String.class);
-							msg = (Msg) ReflectionUtils.invokeMethod(method, viewEventHandler, toUserName, fromUserName, createTime, msgType, event, eventKey, scanType, scanResult);
+							msg = (Msg) ReflectionUtils.invokeMethod(method, scanCodePushEventHandler, toUserName, fromUserName, createTime, msgType, event, eventKey, scanType, scanResult);
 						}
 					} else if ("scancode_waitmsg".equals(event)) {
 						Class clazz = scanCodeWaitMsgEventHandler.getClass();
@@ -237,10 +237,10 @@ public class ServiceController {
 						String scanResult = scanCodeInfoElement.elementTextTrim("ScanResult");
 						Method method = ReflectionUtils.findMethod(clazz, eventKey, String.class, String.class, Long.class, String.class, String.class, String.class, String.class, String.class);
 						if (method != null) {
-							msg = (Msg) ReflectionUtils.invokeMethod(method, viewEventHandler, toUserName, fromUserName, createTime, msgType, event, eventKey, scanType, scanResult);
+							msg = (Msg) ReflectionUtils.invokeMethod(method, scanCodeWaitMsgEventHandler, toUserName, fromUserName, createTime, msgType, event, eventKey, scanType, scanResult);
 						} else {
 							method = ReflectionUtils.findMethod(clazz, "service", String.class, String.class, Long.class, String.class, String.class, String.class, String.class, String.class);
-							msg = (Msg) ReflectionUtils.invokeMethod(method, viewEventHandler, toUserName, fromUserName, createTime, msgType, event, eventKey, scanType, scanResult);
+							msg = (Msg) ReflectionUtils.invokeMethod(method, scanCodeWaitMsgEventHandler, toUserName, fromUserName, createTime, msgType, event, eventKey, scanType, scanResult);
 						}
 					} else if ("pic_sysphoto".equals(event)) {
 						Class clazz = picSysPhotoEventHandler.getClass();
@@ -255,10 +255,10 @@ public class ServiceController {
 						}
 						Method method = ReflectionUtils.findMethod(clazz, eventKey, String.class, String.class, Long.class, String.class, String.class, String.class, Integer.class, String[].class);
 						if (method != null) {
-							msg = (Msg) ReflectionUtils.invokeMethod(method, viewEventHandler, toUserName, fromUserName, createTime, msgType, event, eventKey, count, picMd5Sums);
+							msg = (Msg) ReflectionUtils.invokeMethod(method, picSysPhotoEventHandler, toUserName, fromUserName, createTime, msgType, event, eventKey, count, picMd5Sums);
 						} else {
 							method = ReflectionUtils.findMethod(clazz, "service", String.class, String.class, Long.class, String.class, String.class, String.class, Integer.class, String[].class);
-							msg = (Msg) ReflectionUtils.invokeMethod(method, viewEventHandler, toUserName, fromUserName, createTime, msgType, event, eventKey, count, picMd5Sums);
+							msg = (Msg) ReflectionUtils.invokeMethod(method, picSysPhotoEventHandler, toUserName, fromUserName, createTime, msgType, event, eventKey, count, picMd5Sums);
 						}
 					} else if ("pic_photo_or_album".equals(event)) {
 						Class clazz = picPhotoOrAlbumEventHandler.getClass();
@@ -273,10 +273,10 @@ public class ServiceController {
 						}
 						Method method = ReflectionUtils.findMethod(clazz, eventKey, String.class, String.class, Long.class, String.class, String.class, String.class, Integer.class, String[].class);
 						if (method != null) {
-							msg = (Msg) ReflectionUtils.invokeMethod(method, viewEventHandler, toUserName, fromUserName, createTime, msgType, event, eventKey, count, picMd5Sums);
+							msg = (Msg) ReflectionUtils.invokeMethod(method, picPhotoOrAlbumEventHandler, toUserName, fromUserName, createTime, msgType, event, eventKey, count, picMd5Sums);
 						} else {
 							method = ReflectionUtils.findMethod(clazz, "service", String.class, String.class, Long.class, String.class, String.class, String.class, Integer.class, String[].class);
-							msg = (Msg) ReflectionUtils.invokeMethod(method, viewEventHandler, toUserName, fromUserName, createTime, msgType, event, eventKey, count, picMd5Sums);
+							msg = (Msg) ReflectionUtils.invokeMethod(method, picPhotoOrAlbumEventHandler, toUserName, fromUserName, createTime, msgType, event, eventKey, count, picMd5Sums);
 						}
 					} else if ("pic_weixin".equals(event)) {
 						Class clazz = picWeiXinEventHandler.getClass();
@@ -290,10 +290,10 @@ public class ServiceController {
 						}
 						Method method = ReflectionUtils.findMethod(clazz, eventKey, String.class, String.class, Long.class, String.class, String.class, String.class, Integer.class, String[].class);
 						if (method != null) {
-							msg = (Msg) ReflectionUtils.invokeMethod(method, viewEventHandler, toUserName, fromUserName, createTime, msgType, event, eventKey, count, picMd5Sums);
+							msg = (Msg) ReflectionUtils.invokeMethod(method, picWeiXinEventHandler, toUserName, fromUserName, createTime, msgType, event, eventKey, count, picMd5Sums);
 						} else {
 							method = ReflectionUtils.findMethod(clazz, "service", String.class, String.class, Long.class, String.class, String.class, String.class, Integer.class, String[].class);
-							msg = (Msg) ReflectionUtils.invokeMethod(method, viewEventHandler, toUserName, fromUserName, createTime, msgType, event, eventKey, count, picMd5Sums);
+							msg = (Msg) ReflectionUtils.invokeMethod(method, picWeiXinEventHandler, toUserName, fromUserName, createTime, msgType, event, eventKey, count, picMd5Sums);
 						}
 					} else if ("location_select".equals(msgType)) {
 						Class clazz = locationSelectEventHandler.getClass();
@@ -304,7 +304,7 @@ public class ServiceController {
 						String label = sendLocationInfoElement.elementTextTrim("Label");
 						String poiname = sendLocationInfoElement.elementTextTrim("Poiname");
 						Method method = ReflectionUtils.findMethod(clazz, "service", String.class, String.class, Long.class, String.class, Double.class, Double.class, Integer.class, String.class, String.class);
-						msg = (Msg) ReflectionUtils.invokeMethod(method, locationHandler, toUserName, fromUserName, createTime, msgType, locationX, locationY, scale, label, poiname);
+						msg = (Msg) ReflectionUtils.invokeMethod(method, locationSelectEventHandler, toUserName, fromUserName, createTime, msgType, locationX, locationY, scale, label, poiname);
 					}
 				}
 				out.write(msg == null ? "" : msg.toXml());

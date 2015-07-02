@@ -2,28 +2,6 @@ var Views = {
   analysis: '统计分析'
 };
 
-function decodeResponse(response) {
-  var contentType = response.getResponseHeader('content-type').toLowerCase();
-  if (contentType == 'application/json;charset=utf-8') {
-    var object = Ext.decode(response.responseText);
-    if (object.success) {
-      return object;
-    } else {
-      return false;
-    }
-  }
-  if (contentType == 'text/html;charset=utf-8') {
-    var html = response.responseText;
-    if (html.includes('<title>登录</title>')) {
-      var loginWindow = Platform.get('loginwindow');
-      if (!loginWindow) {
-        loginWindow = Platform.widget('loginwindow');
-      }
-      loginWindow.show();
-    }
-  }
-}
-
 Ext.application({
   appFolder: '.',
   viewFolder: '.',
@@ -40,11 +18,39 @@ Ext.application({
   }
 });
 
+function decodeResponse(response) {
+  if (response.status != 200) {
+    Ext.Msg.alert('提示', '系统异常，请重试！');
+    return false;
+  }
+  var contentType = response.getResponseHeader('content-type').toLowerCase();
+  if (contentType == 'application/json;charset=utf-8') {
+    var object = Ext.decode(response.responseText);
+    if (object.success) {
+      return object;
+    } else {
+      return false;
+    }
+  }
+  if (contentType == 'text/html;charset=utf-8') {
+    var html = response.responseText;
+    if (html.includes('<title>登录</title>')) {
+      var loginWindow = Platform.get('loginwindow');
+      if (!loginWindow) {
+        loginWindow = Platform.widget('loginwindow');
+      }
+      loginWindow.requestOptions = response.request.options;
+      loginWindow.show();
+    }
+  }
+}
+
 Ext.define('Platform.LoginWindow', {
   extend: 'Ext.window.Window',
   xtype: 'platform-loginwindow',
   title: '登录',
   closable: false,
+  closeAction: 'hide',
   modal: true,
   initComponent: function() {
     var me = this;
@@ -70,14 +76,14 @@ Ext.define('Platform.LoginWindow', {
         allowBlank: false
       }]
     });
-    
+
     me.items = [me.formpanel];
 
     me.buttons = [{
       text: '确定',
       handler: Ext.bind(me.onSubmitBtnClick, me)
     }]
-    
+
     me.callParent();
   },
   onSubmitBtnClick: function() {
@@ -86,7 +92,8 @@ Ext.define('Platform.LoginWindow', {
       formpanel.submit({
         url: ctx + '/platform/login.do',
         success: function(form, action) {
-          window.location = ctx + "/egame/platform/index.jsp"
+          me.close();
+          Ext.Ajax.request(me.requestOptions);
         },
         failure: function(form, action) {
           Ext.toast({

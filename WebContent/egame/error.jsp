@@ -55,6 +55,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 <title>错误页面</title>
 <link rel="stylesheet" type="text/css" href="${ctx}/egame/css/error.css" />
+<script src="${ctx}/egame/js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body id="body">
   <div class="error">

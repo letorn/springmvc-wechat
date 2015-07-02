@@ -58,7 +58,7 @@
   </mvc:annotation-driven>
   
   <mvc:interceptors>
-    <bean class="interceptor.WebInterceptor" />
+    <bean class="init.WebInterceptor" />
   </mvc:interceptors>
   
   <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
@@ -81,6 +81,7 @@
     </property>
   </bean>
   
+  <context:component-scan base-package="init" />
   <context:component-scan base-package="dao" />
   <context:component-scan base-package="service" />
   <context:component-scan base-package="wchandler" />

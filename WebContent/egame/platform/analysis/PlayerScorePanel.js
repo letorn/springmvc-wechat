@@ -77,6 +77,7 @@ Ext.define('Platform.analysis.PlayerScorePanel', {
     grid.setLoading(true);
     Ext.Ajax.request({
       url: ctx + '/egame/platform/aggrPlayerScores.do',
+      timeout: 3000,
       params: {
         startDate: startDate,
         endDate: endDate
@@ -95,6 +96,7 @@ Ext.define('Platform.analysis.PlayerScorePanel', {
     subGrid.setLoading(true);
     Ext.Ajax.request({
       url: ctx + '/egame/platform/playerScores.do',
+      timeout: 3000,
       params: {
         playerId: record.get('playerId'),
         startDate: startDate,

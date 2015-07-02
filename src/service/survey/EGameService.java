@@ -302,27 +302,7 @@ public class EGameService {
 		owner.setDrawn(0);
 		owner.setLost(0);
 		for (Player player : playerSet) {
-			if (player.getScore() > 0 && player.getScore() <= 60) {
-				player.setStar(1);
-				player.setHonor("天煞孤星");
-			} else if (player.getScore() > 60 && player.getScore() <= 120) {
-				player.setStar(2);
-				player.setHonor("单身汪汪");
-			} else if (player.getScore() > 120 && player.getScore() <= 180) {
-				player.setStar(3);
-				player.setHonor("暖男备胎");
-			} else if (player.getScore() > 180 && player.getScore() <= 240) {
-				player.setStar(4);
-				player.setHonor("恋爱达人");
-			} else if (player.getScore() > 240 && player.getScore() <= 300) {
-				player.setStar(5);
-				player.setHonor("女神杀手");
-			} else {
-				player.setStar(0);
-				player.setHonor("暂无");
-			}
-
-			int res = owner.getScore().compareTo(player.getScore());
+			int res = owner.getScore().compareTo(honorSetting(player).getScore());
 			if (res > 0) {
 				owner.setWon(owner.getWon() + 1);
 				player.setMatched(-1);
@@ -336,7 +316,7 @@ public class EGameService {
 		}
 
 		List<Player> players = arenaSorter(playerSet);
-		players.add(0, owner);
+		players.add(0, honorSetting(owner));
 		return players;
 	}
 
@@ -468,6 +448,29 @@ public class EGameService {
 
 		});
 		return players;
+	}
+
+	private static Player honorSetting(Player player) {
+		if (player.getScore() > 0 && player.getScore() <= 60) {
+			player.setStar(1);
+			player.setHonor("天煞孤星");
+		} else if (player.getScore() > 60 && player.getScore() <= 120) {
+			player.setStar(2);
+			player.setHonor("单身汪汪");
+		} else if (player.getScore() > 120 && player.getScore() <= 180) {
+			player.setStar(3);
+			player.setHonor("暖男备胎");
+		} else if (player.getScore() > 180 && player.getScore() <= 240) {
+			player.setStar(4);
+			player.setHonor("恋爱达人");
+		} else if (player.getScore() > 240 && player.getScore() <= 300) {
+			player.setStar(5);
+			player.setHonor("女神杀手");
+		} else {
+			player.setStar(0);
+			player.setHonor("暂无");
+		}
+		return player;
 	}
 
 }

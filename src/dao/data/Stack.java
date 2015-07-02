@@ -16,6 +16,9 @@ import model.survey.PlayerScore;
 import model.survey.Question;
 import model.survey.Topic;
 import net.sf.json.JSONArray;
+
+import org.apache.log4j.Logger;
+
 import dao.ChatterDao;
 import dao.MenuDao;
 import dao.data.C3P0Store.Iterator;
@@ -27,6 +30,8 @@ import dao.survey.QuestionDao;
 import dao.survey.TopicDao;
 
 public class Stack {
+
+	private static Logger logger = Logger.getLogger(Stack.class);
 
 	@Resource
 	private MenuDao menuDao;
@@ -61,6 +66,8 @@ public class Stack {
 	public static Map<Long, Map<Long, Map<Integer, Map<Integer, PlayerScore>>>> playerScoreOwnerIdMap = new ConcurrentHashMap<Long, Map<Long, Map<Integer, Map<Integer, PlayerScore>>>>();
 
 	public void init() {
+		logger.info("------ init Stack ------");
+		logger.info("loading Menu ...");
 		menuDao.selectAll(new Iterator<Menu>() {
 			public boolean next(Menu menu, int i) throws Exception {
 				if (menu.getId() != null)
@@ -68,6 +75,7 @@ public class Stack {
 				return true;
 			}
 		});
+		logger.info("loading Chatter ...");
 		chatterDao.selectAll(new Iterator<Chatter>() {
 			public boolean next(Chatter chatter, int i) throws Exception {
 				if (chatter.getId() != null)
@@ -78,6 +86,7 @@ public class Stack {
 			}
 		});
 
+		logger.info("loading Option ...");
 		optionDao.selectAll(new Iterator<Option>() {
 			public boolean next(Option option, int i) throws Exception {
 				if (option.getId() != null)
@@ -85,6 +94,7 @@ public class Stack {
 				return true;
 			}
 		});
+		logger.info("loading Question ...");
 		questionDao.selectAll(new Iterator<Question>() {
 			public boolean next(Question question, int i) throws Exception {
 				if (question.getOptionIds() != null) {
@@ -98,6 +108,7 @@ public class Stack {
 				return true;
 			}
 		});
+		logger.info("loading Chapter ...");
 		chapterDao.selectAll(new Iterator<Chapter>() {
 			public boolean next(Chapter chapter, int i) throws Exception {
 				if (chapter.getQuestionIds() != null) {
@@ -111,6 +122,7 @@ public class Stack {
 				return true;
 			}
 		});
+		logger.info("loading Topic ...");
 		topicDao.selectAll(new Iterator<Topic>() {
 			public boolean next(Topic topic, int i) throws Exception {
 				if (topic.getChapterIds() != null) {
@@ -124,6 +136,7 @@ public class Stack {
 				return true;
 			}
 		});
+		logger.info("loading Player ...");
 		playerDao.selectAll(new Iterator<Player>() {
 			public boolean next(Player player, int i) throws Exception {
 				if (player.getId() != null)
@@ -139,6 +152,7 @@ public class Stack {
 				return true;
 			}
 		});
+		logger.info("loading PlayerScore ...");
 		playerScoreDao.selectList("select id,owner_id,player_id,ptype,topic_id,chapter_id,question_ids,option_ids,max(score) score,begin_date,end_date,create_date from survey_player_score group by owner_id,player_id,topic_id,chapter_id order by ptype desc", new Iterator<PlayerScore>() {
 			public boolean next(PlayerScore playerScore, int i) throws Exception {
 				if (playerScore.getOwnerId() != null && playerScore.getPlayerId() != null && playerScore.getTopicId() != null && playerScore.getChapterId() != null) {
@@ -162,5 +176,6 @@ public class Stack {
 				return true;
 			}
 		});
+		logger.info("------------------------");
 	}
 }

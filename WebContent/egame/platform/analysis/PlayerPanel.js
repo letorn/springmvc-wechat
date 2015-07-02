@@ -170,6 +170,7 @@ Ext.define('Platform.analysis.PlayerPanel', {
     grid.setLoading(true);
     Ext.Ajax.request({
       url: ctx + '/egame/platform/players.do',
+      timeout: 3000,
       params: {
         startDate: startDate,
         endDate: endDate

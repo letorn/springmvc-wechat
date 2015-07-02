@@ -38,7 +38,7 @@ Home.prototype.selectChapter = function(ev){
 		if(ev.target.id == $thumbs[i].id){
 			$thumbs[i].className = 'thumbsClick'
 	    //goBtn的显示效果（已激活显示为绿色，未激活显示为灰色）
-	    if(i <= chapterkeys){
+	    if(i < chapterkeys || i == 0){
 	      $start.attr('href', ctx+"/egame/chapter.do?ownerId="+ownerId+"&playerId="+playerId+"&chapterNum=" + (i+1))
 	      $goBtn.css({"background": "#98D644","border":"solid 1px #009144"})  
 	    }else{

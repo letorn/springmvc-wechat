@@ -23,20 +23,12 @@ public class WeChatClient {
 
 	private static JsonConfig jsonConfig = new JsonConfig();
 
-	private static String appId = "wxc52fb7ade4338f53";
-	private static String appSecret = "643a37af2e6a55cd48bf6531038499d1";
-	private static String token = "letorn";
-
-	// private static String appId = "wx9e96ebc5c0a34ad9";
-	// private static String appSecret = "f802c01b1b3abbbf9e0c8724ee97a0e7";
-	// private static String token = "joblbscom";
+	private static String appId;
+	private static String appSecret;
+	private static String token;
 
 	private static String accessToken = null;
 	private static String ticket = null;
-
-	static {
-		jsonConfig.setIgnoreDefaultExcludes(true);
-	}
 
 	/**
 	 * 验证URL有效性
@@ -249,12 +241,24 @@ public class WeChatClient {
 		return appId;
 	}
 
+	public static void setAppId(String appId) {
+		WeChatClient.appId = appId;
+	}
+
 	public static String getAppSecret() {
 		return appSecret;
 	}
 
+	public static void setAppSecret(String appSecret) {
+		WeChatClient.appSecret = appSecret;
+	}
+
 	public static String getToken() {
 		return token;
+	}
+
+	public static void setToken(String token) {
+		WeChatClient.token = token;
 	}
 
 	public static String getAccessToken() {

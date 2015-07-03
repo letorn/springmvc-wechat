@@ -17,8 +17,8 @@ public class Store<T> extends C3P0Store {
 		return select(storeModel.selectByIdSQL(), new Object[] { id });
 	}
 
-	public T get(Object[] ids) {
-		return select(storeModel.selectByIdsSQL(ids));
+	public List<T> get(Object[] ids) {
+		return selectList(storeModel.selectByIdsSQL(ids));
 	}
 
 	public Boolean add(final T t) {
@@ -114,7 +114,7 @@ public class Store<T> extends C3P0Store {
 
 	public Boolean delete(final Object t) {
 		if (storeModel.tableModel() != null && storeModel.idModel() != null) {
-			return execute(storeModel.deleteSQL(), new Setter() {
+			return execute(storeModel.deleteByIdSQL(), new Setter() {
 				public void invoke(PreparedStatement preparedStatement) throws Exception {
 					if (t.getClass() == storeModel.tlazz())
 						preparedStatement.setObject(1, storeModel.idModel().get(t));

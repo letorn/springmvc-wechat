@@ -26,7 +26,9 @@ public class StoreModel<T> {
 	private String selectByIdsSQL;
 	private String insertSQL;
 	private String updateSQL;
-	private String deleteSQL;
+	private String deleteAllSQL;
+	private String deleteByIdSQL;
+	private String deleteByIdsSQL;
 
 	public StoreModel(Class clazz, Class child) {
 		tlazz = ResolvableType.forClass(child).as(clazz).resolveGeneric(0);
@@ -57,7 +59,8 @@ public class StoreModel<T> {
 		// selectByIdsSQL = buildSelectByIdsSQL();
 		insertSQL = buildInsertSQL();
 		updateSQL = buildUpdateSQL();
-		deleteSQL = buildDeleteSQL();
+		deleteAllSQL = buildDeleteAllSQL();
+		deleteByIdSQL = buildDeleteByIdSQL();
 	}
 
 	public Object[] catchInsertValues(T t) {
@@ -103,8 +106,11 @@ public class StoreModel<T> {
 	public T newTlazz(ResultSet resultSet, String[] columnNames) {
 		T t = newTlazz();
 		try {
-			for (String columnName : columnNames)
-				mappings.get(columnName).set(t, resultSet.getObject(columnName));
+			for (String columnName : columnNames) {
+				ColumnModel mapping = mappings.get(columnName);
+				if (mapping != null)
+					mapping.set(t, resultSet.getObject(columnName));
+			}
 			for (RamModel ramModel : ramModels)
 				ramModel.set(t);
 		} catch (Exception e) {
@@ -157,8 +163,16 @@ public class StoreModel<T> {
 		return updateSQL;
 	}
 
-	public String deleteSQL() {
-		return deleteSQL;
+	public String deleteAllSQL() {
+		return deleteAllSQL;
+	}
+
+	public String deleteByIdSQL() {
+		return deleteByIdSQL;
+	}
+
+	public String deleteByIdsSQL(Object[] ids) {
+		return buildDeleteByIdsSQL(ids);
 	}
 
 	private String buildSelectAllSQL() {
@@ -210,7 +224,14 @@ public class StoreModel<T> {
 		return null;
 	}
 
-	private String buildDeleteSQL() {
+	private String buildDeleteAllSQL() {
+		if (tableModel != null) {
+			return String.format("delete from %s", tableModel.tableName());
+		}
+		return null;
+	}
+
+	private String buildDeleteByIdSQL() {
 		if (tableModel != null && idModel != null) {
 			return String.format("delete from %s where %s=%s", tableModel.tableName(), idModel.columnName(), "?");
 		}

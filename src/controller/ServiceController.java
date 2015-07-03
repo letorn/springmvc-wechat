@@ -1,5 +1,7 @@
 package controller;
 
+import init.WebInterceptor;
+
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
 import java.util.List;
@@ -9,6 +11,7 @@ import javax.annotation.Resource;
 import model.Msg;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
@@ -42,6 +45,8 @@ import wchandler.VoiceHandler;
 @Controller
 public class ServiceController {
 
+	private static Logger logger = Logger.getLogger(ServiceController.class);
+	
 	@Resource
 	public TextHandler textHandler;
 	@Resource
@@ -93,6 +98,7 @@ public class ServiceController {
 	@RequestMapping(value = "service.do", method = RequestMethod.POST, produces = "application/xml;charset=UTF-8")
 	public void service(PrintWriter out, @RequestBody String xml) {
 		if (StringUtils.isNotBlank(xml)) {
+			logger.info(xml);
 			try {
 				Document document = DocumentHelper.parseText(xml);
 				Element xmlElement = document.getRootElement();

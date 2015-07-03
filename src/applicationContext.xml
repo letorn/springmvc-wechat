@@ -10,7 +10,7 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
     http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
-  <context:property-override location="classpath:bean.overrides"/>
+  <!-- <context:property-override location="classpath:bean.overrides"/> -->
 
   <bean id="weChatClient" class="util.WeChatClient">
     <property name="appId" value="wxc52fb7ade4338f53" />

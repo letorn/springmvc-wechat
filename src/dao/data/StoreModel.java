@@ -21,14 +21,14 @@ public class StoreModel<T> {
 	private List<RamModel> ramModels = new ArrayList<RamModel>();
 	private Map<String, ColumnModel> mappings = new HashMap<String, ColumnModel>();
 
-	private String selectAllSQL;
-	private String selectByIdSQL;
-	private String selectByIdsSQL;
 	private String insertSQL;
 	private String updateSQL;
 	private String deleteAllSQL;
 	private String deleteByIdSQL;
 	private String deleteByIdsSQL;
+	private String selectAllSQL;
+	private String selectByIdSQL;
+	private String selectByIdsSQL;
 
 	public StoreModel(Class clazz, Class child) {
 		tlazz = ResolvableType.forClass(child).as(clazz).resolveGeneric(0);
@@ -54,13 +54,12 @@ public class StoreModel<T> {
 		for (MappingModel mappingModel : mappingModels)
 			mappings.put(mappingModel.columnName(), mappingModel);
 
-		selectAllSQL = buildSelectAllSQL();
-		selectByIdSQL = buildSelectByIdSQL();
-		// selectByIdsSQL = buildSelectByIdsSQL();
 		insertSQL = buildInsertSQL();
 		updateSQL = buildUpdateSQL();
 		deleteAllSQL = buildDeleteAllSQL();
 		deleteByIdSQL = buildDeleteByIdSQL();
+		selectAllSQL = buildSelectAllSQL();
+		selectByIdSQL = buildSelectByIdSQL();
 	}
 
 	public Object[] catchInsertValues(T t) {
@@ -143,18 +142,6 @@ public class StoreModel<T> {
 		return ramModels;
 	}
 
-	public String selectAllSQL() {
-		return selectAllSQL;
-	}
-
-	public String selectByIdSQL() {
-		return selectByIdSQL;
-	}
-
-	public String selectByIdsSQL(Object[] ids) {
-		return buildSelectByIdsSQL(ids);
-	}
-
 	public String insertSQL() {
 		return insertSQL;
 	}
@@ -175,25 +162,16 @@ public class StoreModel<T> {
 		return buildDeleteByIdsSQL(ids);
 	}
 
-	private String buildSelectAllSQL() {
-		if (tableModel != null) {
-			return String.format("select * from %s", tableModel.tableName());
-		}
-		return null;
+	public String selectAllSQL() {
+		return selectAllSQL;
 	}
 
-	private String buildSelectByIdSQL() {
-		if (tableModel != null && idModel != null) {
-			return String.format("select * from %s where %s=%s", tableModel.tableName(), idModel.columnName(), "?");
-		}
-		return null;
+	public String selectByIdSQL() {
+		return selectByIdSQL;
 	}
 
-	private String buildSelectByIdsSQL(Object[] ids) {
-		if (tableModel != null && idModel != null) {
-			return String.format("select * from %s where %s in(%s)", tableModel.tableName(), idModel.columnName(), StringUtils.join(ids, ","));
-		}
-		return null;
+	public String selectByIdsSQL(Object[] ids) {
+		return buildSelectByIdsSQL(ids);
 	}
 
 	private String buildInsertSQL() {
@@ -234,6 +212,34 @@ public class StoreModel<T> {
 	private String buildDeleteByIdSQL() {
 		if (tableModel != null && idModel != null) {
 			return String.format("delete from %s where %s=%s", tableModel.tableName(), idModel.columnName(), "?");
+		}
+		return null;
+	}
+
+	private String buildDeleteByIdsSQL(Object[] ids) {
+		if (tableModel != null && idModel != null) {
+			return String.format("delete from %s where %s in(%s)", tableModel.tableName(), idModel.columnName(), StringUtils.join(ids, ","));
+		}
+		return null;
+	}
+
+	private String buildSelectAllSQL() {
+		if (tableModel != null) {
+			return String.format("select * from %s", tableModel.tableName());
+		}
+		return null;
+	}
+
+	private String buildSelectByIdSQL() {
+		if (tableModel != null && idModel != null) {
+			return String.format("select * from %s where %s=%s", tableModel.tableName(), idModel.columnName(), "?");
+		}
+		return null;
+	}
+
+	private String buildSelectByIdsSQL(Object[] ids) {
+		if (tableModel != null && idModel != null) {
+			return String.format("select * from %s where %s in(%s)", tableModel.tableName(), idModel.columnName(), StringUtils.join(ids, ","));
 		}
 		return null;
 	}

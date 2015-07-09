@@ -2,7 +2,13 @@ package util;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class WebContext {
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
+
+@Component
+public class WebContext implements ApplicationContextAware {
 
 	private static Boolean inited = false;
 	private static String scheme;
@@ -11,6 +17,12 @@ public class WebContext {
 	private static String contextPath;
 	private static String serverHost;
 	private static String serverLink;
+	private static String appRoot = System.getProperty("webapp.root");
+	private static ApplicationContext applicationContext;
+
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		this.applicationContext = applicationContext;
+	}
 
 	public static void init(HttpServletRequest request) {
 		if (!inited) {
@@ -46,6 +58,22 @@ public class WebContext {
 
 	public static String getServerLink() {
 		return serverLink;
+	}
+
+	public static String getAppRoot() {
+		return appRoot;
+	}
+
+	public static <T> T getBean(Class<T> clazz) {
+		return applicationContext.getBean(clazz);
+	}
+
+	public static Object getBean(String beanName) {
+		return applicationContext.getBean(beanName);
+	}
+
+	public static <T> T getBean(Class<T> clazz, String beanName) {
+		return applicationContext.getBean(clazz, beanName);
 	}
 
 }

@@ -64,6 +64,15 @@ public class HttpClient {
 			return this;
 		}
 
+		public HttpClientBuilder header(String... keyvals) {
+			if (keyvals.length % 2 == 0) {
+				for (int i = 0; i < keyvals.length; i += 2) {
+					requestBuilder.addHeader(keyvals[i], keyvals[i + 1]);
+				}
+			}
+			return this;
+		}
+
 		public String toString() {
 			HttpUriRequest request = requestBuilder.build();
 			try {
